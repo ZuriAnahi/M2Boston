@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mercado Inmobiliario de la Ciudad de Boston</title>
+    <link rel="stylesheet" type="text/css" href="styles/formulario.css">
+    <script>
+        function predecirValorVivienda(event) {
+            event.preventDefault();
+            const NOX = document.getElementById('NOX').value;
+            const RM = document.getElementById('RM').value;
+            const DIS = document.getElementById('DIS').value;
+            const PTRATIO = document.getElementById('PTRATIO').value;
+            const B = document.getElementById('B').value;
+            const LSTAT = document.getElementById('LSTAT').value;
+            fetch('/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `NOX=${NOX}&RM=${RM}&DIS=${DIS}&PTRATIO=${PTRATIO}&B=${B}&LSTAT=${LSTAT}`,
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    document.getElementById('resultado').innerText = 'Error: ' + data.error;
+                } else {
+                    document.getElementById('resultado').innerText = 'El valor mediano de la vivienda es: ' + data.categoria;
+                }
+            })
+            .catch(error => {
+                document.getElementById('resultado').innerText = 'Error en la solicitud.';
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</head>
+<body>
+    <h1>Mercado Inmobiliario de la Ciudad de Boston</h1>
+    
+    <form id="formulario" onsubmit="predecirValorVivienda(event)">
+
+        <label for="NOX">Contaminación del Aire:</label>
+        <input type="text" id="NOX" name="NOX"><br><br>
+
+        <label for="RM">Número medio de habitaciones:</label>
+        <input type="text" id="RM" name="RM"><br><br>
+
+        <label for="DIS">Distancias ponderadas a cinco centros de empleo en Boston:</label>
+        <input type="text" id="DIS" name="DIS"><br><br>
+        
+        <label for="PTRATIO">Proporción alumno-maestro por ciudad:</label>
+        <input type="text" id="PTRATIO" name="PTRATIO"><br><br>
+
+        <label for="B">Proporción de residentes de origen afroamericano por ciudad:</label>
+        <input type="text" id="B" name="B"><br><br>
+
+        <label for="LSTAT">Porcentaje de población de bajo nivel socioeconómico:</label>
+        <input type="text" id="LSTAT" name="LSTAT"><br><br>
+
+        <input type="submit" value="Enviar">
+    </form>
+    <p id="resultado"></p>
+</body>
+</html>
