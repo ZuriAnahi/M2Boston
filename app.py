@@ -23,12 +23,8 @@ def create_model():
     return model
 
 # Cargar el modelo entrenado
-try:
-    model = joblib.load('modeloBoston.pkl')
-    app.logger.debug('Modelo cargado correctamente.')
-except Exception as e:
-    app.logger.error(f'Error al cargar el modelo: {str(e)}')
-    model = None
+model = joblib.load('modeloBoston.pkl')
+app.logger.debug('Modelo cargado correctamente.')
 
 @app.route('/')
 def home():
@@ -36,8 +32,8 @@ def home():
 
 @app.route('/predict', methods=['POST'])
 def predict():
-    if model is None:
-        return jsonify({'error': 'Modelo no cargado correctamente.'}), 400
+    #if model is None:
+     #   return jsonify({'error': 'Modelo no cargado correctamente.'}), 400
 
     try:
         # Obtener los datos enviados en el request

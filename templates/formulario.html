@@ -3,6 +3,7 @@
 <head>
     <title>Mercado Inmobiliario de la Ciudad de Boston</title>
     <link rel="stylesheet" type="text/css" href="styles/formulario.css">
+    <link rel="stylesheet" href="/static/styles.css">
     <script>
         function predecirValorVivienda(event) {
             event.preventDefault();
@@ -38,23 +39,22 @@
     <h1>Mercado Inmobiliario de la Ciudad de Boston</h1>
     
     <form id="formulario" onsubmit="predecirValorVivienda(event)">
-
-        <label for="NOX">Contaminación del Aire:</label>
+        <label for="NOX">Contaminación del Aire (NOX):</label>
         <input type="text" id="NOX" name="NOX"><br><br>
 
-        <label for="RM">Número medio de habitaciones:</label>
+        <label for="RM">Número medio de habitaciones (RM):</label>
         <input type="text" id="RM" name="RM"><br><br>
 
-        <label for="DIS">Distancias ponderadas a cinco centros de empleo en Boston:</label>
+        <label for="DIS">Distancias ponderadas a cinco centros de empleo en Boston(DIS):</label>
         <input type="text" id="DIS" name="DIS"><br><br>
         
-        <label for="PTRATIO">Proporción alumno-maestro por ciudad:</label>
+        <label for="PTRATIO">Proporción alumno-maestro por ciudad(PTRATIO):</label>
         <input type="text" id="PTRATIO" name="PTRATIO"><br><br>
 
-        <label for="B">Proporción de residentes de origen afroamericano por ciudad:</label>
+        <label for="B">Proporción de residentes de origen afroamericano por ciudad(B):</label>
         <input type="text" id="B" name="B"><br><br>
 
-        <label for="LSTAT">Porcentaje de población de bajo nivel socioeconómico:</label>
+        <label for="LSTAT">Porcentaje de población de bajo nivel socioeconómico(LSTAT):</label>
         <input type="text" id="LSTAT" name="LSTAT"><br><br>
 
         <input type="submit" value="Enviar">
